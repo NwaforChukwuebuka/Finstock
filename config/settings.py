@@ -46,8 +46,12 @@ INSTALLED_APPS = [
     'transactions',
     'invoices',
     'users',
+    'products',
+    'reports',
+    'stock_adjustments',
     'django_filters',
     'reportlab',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

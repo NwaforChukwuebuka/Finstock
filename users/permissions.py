@@ -8,10 +8,9 @@ class CanViewAllProducts(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        return (request.user and
-                request.user.roles.filter(
-                    permissions__name='can_view_all_products').exists()
-                )
+        if request.user.is_authenticated:
+            return request.user.roles.filter(permissions__name='can_view_all_products').exists()
+        return False
 
 
 class CanManageOrders(permissions.BasePermission):
@@ -21,9 +20,9 @@ class CanManageOrders(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        return (request.user and request.user.roles.filter(
-            permissions__name='can_manage_orders').exists()
-        )
+        if request.user.is_authenticated:
+            return request.user.roles.filter(permissions__name='can_manage_orders').exists()
+        return False
 
 
 class CanViewAllTransactions(permissions.BasePermission):
@@ -32,10 +31,9 @@ class CanViewAllTransactions(permissions.BasePermission):
     permission to view all transactions.
     """
     def has_permission(self, request, view):
-        return (request.user and
-                request.user.roles.filter(
-                    permissions__name='can_view_all_transactions').exists()
-                )
+        if request.user.is_authenticated:
+            return request.user.roles.filter(permissions__name='can_view_all_transactions').exists()
+        return False
 
 
 class CanManageTransactions(permissions.BasePermission):
@@ -44,10 +42,9 @@ class CanManageTransactions(permissions.BasePermission):
     permission to manage transactions.
     """
     def has_permission(self, request, view):
-        return (request.user and
-                request.user.roles.filter(
-                    permissions__name='can_manage_transactions').exists()
-                )
+        if request.user.is_authenticated:
+            return request.user.roles.filter(permissions__name='can_manage_transactions').exists()
+        return False
 
 
 class CanViewAllInvoices(permissions.BasePermission):
@@ -56,10 +53,9 @@ class CanViewAllInvoices(permissions.BasePermission):
     permission to view all invoices.
     """
     def has_permission(self, request, view):
-        return (request.user and
-                request.user.roles.filter(
-                    permissions__name='can_view_all_invoices').exists()
-                )
+        if request.user.is_authenticated:
+            return request.user.roles.filter(permissions__name='can_view_all_invoices').exists()
+        return False
 
 
 class CanManageInvoices(permissions.BasePermission):
@@ -68,7 +64,6 @@ class CanManageInvoices(permissions.BasePermission):
     permission to manage invoices.
     """
     def has_permission(self, request, view):
-        return (request.user and
-                request.user.roles.filter(
-                    permissions__name='can_manage_invoices').exists()
-                )
+        if request.user.is_authenticated:
+            return request.user.roles.filter(permissions__name='can_manage_invoices').exists()
+        return False

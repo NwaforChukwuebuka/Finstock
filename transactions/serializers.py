@@ -8,6 +8,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     """
 
 
-class Meta:
-    model = Transaction
-    fields = '__all__'
+    class Meta:
+        model = Transaction
+        fields = '__all__'
+        ref_name = 'TransactionSerializer'

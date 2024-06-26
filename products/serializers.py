@@ -5,12 +5,14 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'name', 'description']
+        ref_name = 'CategorySerializer'
 
 
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
         fields = ['id', 'product', 'image', 'alt_text']
+        ref_name = 'ProductImageSerializer'
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -19,6 +21,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = ['id', 'product', 'user', 'rating', 'comment', 'created_at']
+        ref_name = 'ReviewSerializer'
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -29,3 +32,4 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'name', 'description', 'price', 'sku', 'stock', 'category', 'images', 'reviews']
+        ref_name = 'ProductSerializer'

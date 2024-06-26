@@ -1,8 +1,10 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import StockAdjustmentViewSet
+
+router = DefaultRouter()
+router.register(r'stock_adjustments', StockAdjustmentViewSet)
 
 urlpatterns = [
-    path('stock_adjustments/', views.StockAdjustmentListCreateAPIView.as_view(), name='stock_adjustment_list_create'),
-    path('stock_adjustments/<int:pk>/', views.StockAdjustmentRetrieveUpdateDestroyAPIView.as_view(), name='stock_adjustment_detail'),
-    # Add more paths as needed for your application
+    path('', include(router.urls)),
 ]

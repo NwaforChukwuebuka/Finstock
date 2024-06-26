@@ -7,7 +7,7 @@ class TimeStampedModel(models.Model):
     An abstract base class model that provides self-updating 'created'
     and 'modified' fields.
     """
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=timezone.now, editable=False)
     modified = models.DateTimeField(auto_now=True)
 
 
@@ -81,7 +81,7 @@ class OrderItem(models.Model):
         return self.quantity * self.unit_price
 
 
-class Address(models.Model):
+class Address(TimeStampedModel):
     """
     Model representing a standard address.
     """
