@@ -1,0 +1,18 @@
+body {
+    background-color: #f7f9fc;
+}
+.card {
+    margin-top: 200px;
+}
+.nav-tabs .nav-link.active {
+    background-color: #413e66;
+    color: white !important;
+}
+.btn-custom {
+    background-color: #413e66;
+    color: white;
+}
+.btn-custom:hover {
+    background-color: #353258;
+    color: white;
+}
