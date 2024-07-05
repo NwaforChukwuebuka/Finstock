@@ -21,4 +21,4 @@ class StockAdjustment(models.Model):
     adjustment_date = models.DateField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.adjustment_type.capitalize()} {self.quantity} for {self.product.name}"
+        return f" {self.quantity} for {self.product.name}"

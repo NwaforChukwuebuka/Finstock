@@ -2,6 +2,7 @@ import os
 import environ
 from pathlib import Path
 from dotenv import load_dotenv
+from django.db.backends.signals import connection_created
 
 load_dotenv()
 
@@ -48,6 +49,11 @@ INSTALLED_APPS = [
     'users',
     'django_filters',
     'reportlab',
+    'products',
+    'reports',
+    'report_files',
+    'stock_adjustments',
+    'config',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +100,10 @@ DATABASES = {
         'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'your_db_password'),
         'HOST': os.environ.get('MYSQL_HOST', 'localhost'),
         'PORT': os.environ.get('MYSQL_PORT', '3306'),
+        'OPTIONS': {
+            'charset': 'utf8',
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES', innodb_strict_mode=1",
+        },
         }
     }
 
@@ -157,3 +167,9 @@ REST_FRAMEWORK = {
     ),
 }
 
+def activate_mysql_strict_mode(sender, connection, **kwargs):
+    if connection.vendor == 'mysql':
+        cursor = connection.cursor()
+        cursor.execute("SET SESSION sql_mode = 'STRICT_TRANS_TABLES'")
+
+connection_created.connect(activate_mysql_strict_mode)

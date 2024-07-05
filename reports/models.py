@@ -9,7 +9,7 @@ class Report(models.Model):
     """
     Model representing a report.
     """
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=191)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -23,7 +23,7 @@ class ReportEntry(models.Model):
     Model representing an entry in a report.
     """
     report = models.ForeignKey(Report, related_name='entries', on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=191)
     content = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
